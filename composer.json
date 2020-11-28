@@ -1,0 +1,17 @@
+{
+    "name": "francisco/rest-code",
+    "description": "Custom Api Rest",
+    "authors": [{
+        "name": "Francisco",
+        "email": "frangarmu95@gmail.com"
+    }],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app/helpers.php"
+        ]
+    }
+}
