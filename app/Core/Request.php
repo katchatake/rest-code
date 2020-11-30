@@ -16,10 +16,11 @@ class Request
     public function __construct($routes)
     {
         $ruta = (!empty($_GET['url']) ? '/' . $_GET['url'] : '/');
-        echo $ruta;
+        //echo $ruta;
         //echo '<br>';
-        echo '<pre>';
-        var_dump($this->searchURL($routes, $ruta));
+        //echo '<pre>';
+        $this->searchURL($routes, $ruta);
+        //var_dump($this->searchURL($routes, $ruta));
     }
 
     function searchURL($routes, $position)
@@ -31,30 +32,35 @@ class Request
                     $midle = new Midleware();
                     $metodo = $route['midleware'];
                     if ($midle->$metodo()) {
-                        return $route;
+                        //return $route;
+                        $this->setURL($route);
                     } else {
                     }
                 } else {
-                    return $route;
+                    //return $route;
+                    $this->setURL($route);
                 }
             } else {
                 foreach ($routes['groups'] as $routeg) {
-                    if ($routeg['alias'] == '/' . $url[1] && $this->validRequestHTTP($routeg)) {
+                    if ($routeg['alias'] == '/' . $url[1]) {
                         if (array_key_exists('midleware', $routeg)) {
                             $midle = new Midleware();
                             $metodo = $routeg['midleware'];
                             if ($midle->$metodo()) {
                                 foreach ($routeg['routes'] as $routegu) {
-                                    if ($routegu['url'] == '/' . $url[2]) {
-                                        return $routegu;
+                                    if ($routegu['url'] == '/' . $url[2] && $this->validRequestHTTP($routegu)) {
+                                        //return $routegu;
+                                        $this->setURL($routegu);
                                     }
                                 }
                             } else {
                             }
                         } else {
                             foreach ($routeg['routes'] as $routegu) {
-                                if ($routegu['url'] == '/' . $url[2]) {
-                                    return $routegu;
+                                if ($routegu['url'] == '/' . $url[2] && $this->validRequestHTTP($routegu)) {
+                                    //return $routegu;
+
+                                    $this->setURL($routegu);
                                 }
                             }
                         }
@@ -76,5 +82,36 @@ class Request
         $this->url = $route['url'];
         $this->controller = $route['controller'][0];
         $this->clase = $route['controller'][1];
+    }
+
+    public function getController()
+    {
+        return $this->controller;
+    }
+
+    public function getClase()
+    {
+        return $this->clase;
+    }
+
+    public function send()
+    {
+        $controller = $this->getController();
+        $clase = $this->getClase();
+
+        $response = call_user_func([
+            new $controller,
+            $clase
+        ]);
+
+        try {
+            if ($response instanceof Response) {
+                $response->send();
+            } else {
+                throw new \Exception("Error Processing Request", 1);
+            }
+        } catch (\Exception $e) {
+            echo "Details {$e->getMessage()}";
+        }
     }
 }

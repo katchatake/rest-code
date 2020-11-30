@@ -10,19 +10,19 @@ $routes = [
         [
             'url' => '/',
             'method' => 'GET',
-            'midleware' => 'auth',
+            //'midleware' => 'auth',
             'controller' => ['App\Http\Controllers\HomeController', 'index'],
         ]
     ],
     'groups' => [
         [
             "alias" => '/admin',
-            'midleware' => 'auth',
+            //'midleware' => 'auth',
             "routes" => [
                 [
                     'url' => '/users',
-                    'method' => 'GET',
-                    'controller' => ['App\Http\Controllers\HomeController', 'index'],
+                    'method' => 'POST',
+                    'controller' => ['App\Http\Controllers\HomeController', 'json'],
                 ],
                 [
                     'url' => '/tabla/edit',
@@ -52,3 +52,4 @@ $routes = [
 ];
 
 $app = new App\Core\Request($routes);
+$app->send();

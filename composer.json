@@ -13,8 +13,8 @@
             "App\\": "app/"
         },
         "files": [
-            "app/helpers.php",
-            "app/configs.php"
+            "app/helpers/helpers.php",
+            "app/helpers/configs.php"
         ]
     }
 }
