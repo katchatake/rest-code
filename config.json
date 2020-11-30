@@ -1,0 +1,12 @@
+{
+    "dev": {
+        "DBNAME": "acrilicos",
+        "DBUSER": "root",
+        "DBPASS": ""
+    },
+    "pro": {
+        "DBNAME": "acrilicos",
+        "DBROOT": "root",
+        "DBPASS": ""
+    }
+}

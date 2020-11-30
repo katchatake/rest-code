@@ -5,13 +5,16 @@
         "name": "Francisco",
         "email": "frangarmu95@gmail.com"
     }],
-    "require": {},
+    "require": {
+        "catfan/medoo": "^1.7"
+    },
     "autoload": {
         "psr-4": {
             "App\\": "app/"
         },
         "files": [
-            "app/helpers.php"
+            "app/helpers.php",
+            "app/configs.php"
         ]
     }
 }
