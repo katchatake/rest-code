@@ -19,6 +19,7 @@ class Request
         //echo $ruta;
         //echo '<br>';
         //echo '<pre>';
+        //var_dump($routes['default'][0]);
         $this->searchURL($routes, $ruta);
         //var_dump($this->searchURL($routes, $ruta));
     }
@@ -35,12 +36,12 @@ class Request
                         //return $route;
                         $this->setURL($route);
                     } else {
+                        //$this->setURL($routes['default'][0]);
                     }
                 } else {
-                    //return $route;
                     $this->setURL($route);
                 }
-            } else {
+            } else if ($route['url'] != '/' . $url[1] && count($routes['groups']) > 0) {
                 foreach ($routes['groups'] as $routeg) {
                     if ($routeg['alias'] == '/' . $url[1]) {
                         if (array_key_exists('midleware', $routeg)) {
@@ -51,6 +52,7 @@ class Request
                                     if ($routegu['url'] == '/' . $url[2] && $this->validRequestHTTP($routegu)) {
                                         //return $routegu;
                                         $this->setURL($routegu);
+                                    } else {
                                     }
                                 }
                             } else {
@@ -59,11 +61,12 @@ class Request
                             foreach ($routeg['routes'] as $routegu) {
                                 if ($routegu['url'] == '/' . $url[2] && $this->validRequestHTTP($routegu)) {
                                     //return $routegu;
-
                                     $this->setURL($routegu);
                                 }
                             }
                         }
+                    } else {
+                        $this->setURL($routes['default'][0]);
                     }
                 }
             }

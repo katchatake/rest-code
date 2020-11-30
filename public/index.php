@@ -14,6 +14,14 @@ $routes = [
             'controller' => ['App\Http\Controllers\HomeController', 'index'],
         ]
     ],
+    'default' => [
+        [
+            'url' => '/error',
+            'method' => 'GET',
+            //'midleware' => 'auth',
+            'controller' => ['App\Http\Controllers\ErrorController', 'index'],
+        ]
+    ],
     'groups' => [
         [
             "alias" => '/admin',
@@ -21,7 +29,7 @@ $routes = [
             "routes" => [
                 [
                     'url' => '/users',
-                    'method' => 'POST',
+                    'method' => 'GET',
                     'controller' => ['App\Http\Controllers\HomeController', 'json'],
                 ],
                 [
