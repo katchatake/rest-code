@@ -8,13 +8,13 @@ require '../vendor/autoload.php';
 $routes = [
     'urls' => [
         [
-            'url' => '/',
+            'url' => '/products',
             'method' => 'GET',
             //'midleware' => 'auth',
             'controller' => ['App\Http\Controllers\HomeController', 'index'],
         ]
     ],
-    'default' => [
+    'errors' => [
         [
             'url' => '/error',
             'method' => 'GET',
@@ -24,18 +24,23 @@ $routes = [
     ],
     'groups' => [
         [
-            "alias" => '/admin',
+            "alias" => '/users',
             //'midleware' => 'auth',
             "routes" => [
                 [
-                    'url' => '/users',
-                    'method' => 'GET',
-                    'controller' => ['App\Http\Controllers\HomeController', 'json'],
+                    'url' => '/add',
+                    'method' => 'POST',
+                    'controller' => ['App\Http\Controllers\HomeController', 'add'],
                 ],
                 [
-                    'url' => '/tabla/edit',
+                    'url' => '/get',
                     'method' => 'GET',
-                    'controller' => 'App\Http\Controllers\HomeController@index',
+                    'controller' => ['App\Http\Controllers\HomeController', 'get'],
+                ],
+                [
+                    'url' => '/edit',
+                    'method' => 'POST',
+                    'controller' => ['App\Http\Controllers\HomeController', 'edit'],
                 ]
             ]
         ],
@@ -58,6 +63,7 @@ $routes = [
         ]
     ]
 ];
+
 
 $app = new App\Core\Request($routes);
 $app->send();

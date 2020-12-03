@@ -1,6 +1,6 @@
 {
     "dev": {
-        "DBNAME": "acrilico",
+        "DBNAME": "test",
         "DBUSER": "root",
         "DBPASS": ""
     },

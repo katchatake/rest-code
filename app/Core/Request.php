@@ -27,8 +27,9 @@ class Request
     function searchURL($routes, $position)
     {
         $url = explode('/', $position);
+        //var_dump($url);
         foreach ($routes['urls'] as $route) {
-            if ($route['url'] == '/' . $url[1] && $this->validRequestHTTP($route)) {
+            if (in_array('/' . $url[1], $route) && $this->validRequestHTTP($route)) {
                 if (array_key_exists('midleware', $route)) {
                     $midle = new Midleware();
                     $metodo = $route['midleware'];
@@ -41,15 +42,15 @@ class Request
                 } else {
                     $this->setURL($route);
                 }
-            } else if ($route['url'] != '/' . $url[1] && count($routes['groups']) > 0) {
+            } else if (!in_array('/' . $url[1], $route) && count($routes['groups']) > 0) {
                 foreach ($routes['groups'] as $routeg) {
-                    if ($routeg['alias'] == '/' . $url[1]) {
+                    if (in_array('/' . $url[1], $routeg)) {
                         if (array_key_exists('midleware', $routeg)) {
                             $midle = new Midleware();
                             $metodo = $routeg['midleware'];
                             if ($midle->$metodo()) {
                                 foreach ($routeg['routes'] as $routegu) {
-                                    if ($routegu['url'] == '/' . $url[2] && $this->validRequestHTTP($routegu)) {
+                                    if (in_array('/' . $url[2], $routegu) && $this->validRequestHTTP($routegu)) {
                                         //return $routegu;
                                         $this->setURL($routegu);
                                     } else {
@@ -58,17 +59,21 @@ class Request
                             } else {
                             }
                         } else {
-                            foreach ($routeg['routes'] as $routegu) {
-                                if ($routegu['url'] == '/' . $url[2] && $this->validRequestHTTP($routegu)) {
-                                    //return $routegu;
-                                    $this->setURL($routegu);
+                            foreach ($routeg['routes'] as $routegus) {
+
+                                if (in_array('/' . $url[2], $routegus) && $this->validRequestHTTP($routegus)) {
+
+                                    //return $routegus;
+                                    //var_dump($routegus);
+                                    $this->setURL($routegus);
+                                } else {
                                 }
                             }
                         }
-                    } else {
-                        $this->setURL($routes['default'][0]);
-                    }
+                    } /**/
                 }
+            } else {
+                $this->setURL($routes['errors'][0]);
             }
         }
         return false;
@@ -81,6 +86,7 @@ class Request
 
     public function setURL($route)
     {
+        //var_dump($route);
         $this->method = $route['method'];
         $this->url = $route['url'];
         $this->controller = $route['controller'][0];
