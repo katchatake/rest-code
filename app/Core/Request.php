@@ -108,19 +108,22 @@ class Request
         $controller = $this->getController();
         $clase = $this->getClase();
 
-        $response = call_user_func([
-            new $controller,
-            $clase
-        ]);
-
         try {
-            if ($response instanceof Response) {
-                $response->send();
-            } else {
-                throw new \Exception("Error Processing Request", 1);
+            $response = call_user_func([
+                new $controller,
+                $clase
+            ]);
+            try {
+                if ($response instanceof Response) {
+                    $response->send();
+                } else {
+                    throw new \Exception("Error Processing Request", 1);
+                }
+            } catch (\Exception $e) {
+                echo "Details {$e->getMessage()}";
             }
-        } catch (\Exception $e) {
-            echo "Details {$e->getMessage()}";
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     }
 }

@@ -8,10 +8,14 @@ class Midleware
 {
     public function auth()
     {
-        $query = new Midelwares();
-        $header = apache_request_headers();
-        $data = $query->valid($header['Authorization']);
+        try {
+            $query = new Midelwares();
+            $header = apache_request_headers();
+            $data = $query->valid(!empty($header['Authorization']));
 
-        return ($data) ? true : false;
+            return ($data) ? true : false;
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 }

@@ -32,7 +32,7 @@ class Response
   public function send()
   {
     $view = $this->getView();
-    $type = $this->getType();;
+    $type = $this->getType();
     $data = $this->getData();
     switch ($type) {
       case 'html':
