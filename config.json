@@ -5,7 +5,7 @@
         "DBPASS": ""
     },
     "pro": {
-        "DBNAME": "acrilicos",
+        "DBNAME": "pruebas",
         "DBROOT": "root",
         "DBPASS": ""
     }

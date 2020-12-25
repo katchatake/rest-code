@@ -36,8 +36,7 @@ class Response
     $data = $this->getData();
     switch ($type) {
       case 'html':
-        $content = file_get_contents(viewPath($view));
-        require viewPath('layout');
+        viewPath($view);
         break;
       case 'json':
         viewJSON($data);
