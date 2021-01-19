@@ -21,7 +21,7 @@ class HomeController
     $query = new UsersModel();
     $data = $query->getUsers();
     $array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    return json($data);
+    return json($array);
   }
   public function add()
   {
