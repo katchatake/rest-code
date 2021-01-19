@@ -28,7 +28,7 @@ class Request
     function searchURL($routes, $position)
     {
         $url = explode('/', $position);
-        //var_dump($url);
+        var_dump($url);
         foreach ($routes['urls'] as $route) {
             if (in_array('/' . $url[1], $route) && $this->validRequestHTTP($route)) {
                 if (array_key_exists('midleware', $route)) {
