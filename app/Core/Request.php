@@ -19,8 +19,8 @@ class Request
         //$ruta = (!empty($_GET['url']) ? '/' . $_GET['url'] : '/');
         //echo $ruta;
         //echo '<br>';
-        echo '<pre>';
-        var_dump($ruta);
+        //echo '<pre>';
+        //var_dump($routes['default'][0]);
         $this->searchURL($routes, $ruta);
         //var_dump($this->searchURL($routes, $ruta));
     }
