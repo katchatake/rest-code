@@ -7,5 +7,5 @@ date_default_timezone_set('America/Mexico_City');
 require '../vendor/autoload.php';
 require '../app/routes.php';
 echo "si entro";
-$app = new App\Core\Request($route->getRoutes());
-$app->send();
+/*$app = new App\Core\Request($route->getRoutes());
+$app->send();*/
