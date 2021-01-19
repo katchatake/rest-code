@@ -3,6 +3,7 @@
 $route = new App\Core\Router;
 
 
+$route->setRoute('/api', 'GET', '', ['App\Http\Controllers\HomeController', 'get']);
 $route->setRoute('/', 'GET', '', ['App\Http\Controllers\HomeController', 'index']);
 $route->setGroup('/api', 'auth', function ($route) {
     $route->setRoute('/add', 'POST', '', ['App\Http\Controllers\HomeController', 'add']);
