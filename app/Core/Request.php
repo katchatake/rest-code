@@ -15,7 +15,8 @@ class Request
 
     public function __construct($routes)
     {
-        $ruta = (!empty($_GET['url']) ? '/' . $_GET['url'] : '/');
+        $ruta = explode('/', $_SERVER['REQUEST_URI']);
+        //$ruta = (!empty($_GET['url']) ? '/' . $_GET['url'] : '/');
         //echo $ruta;
         //echo '<br>';
         //echo '<pre>';
