@@ -13,4 +13,4 @@ $ruta = explode('/', $_SERVER['REQUEST_URI']);
 //echo $ruta;
 //echo '<br>';
 echo '<pre>';
-var_dump($ruta);
+var_dump($_SERVER['REQUEST_URI']);
