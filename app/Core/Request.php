@@ -108,7 +108,7 @@ class Request
     {
         $controller = $this->getController();
         $clase = $this->getClase();
-
+        var_dump($controller);
         try {
             $response = call_user_func([
                 new $controller,
