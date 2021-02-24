@@ -1,0 +1,14 @@
+{
+    "dev": {
+        "DBHOST": "us-cdbr-east-03.cleardb.com",
+        "DBNAME": "heroku_33f18c8eabf80b9",
+        "DBUSER": "b00c8fee85ca64",
+        "DBPASS": "2b21515f"
+    },
+    "pro": {
+        "DBHOST": "us-cdbr-east-03.cleardb.com",
+        "DBNAME": "heroku_33f18c8eabf80b9",
+        "DBROOT": "b00c8fee85ca64",
+        "DBPASS": "2b21515f"
+    }
+}
